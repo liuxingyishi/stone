@@ -1,0 +1,117 @@
+<link href="/stylesheets/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/jcrop/jquery.Jcrop.min.css">
+<div class="container">
+    <div class="row-fluid">
+            <h3>个人设置</h3>
+            <hr/>
+            <div class="clearfix">
+                <div class="col-sm-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" class="active"><a href="#head" data-toggle="tab">我的头像</a></li>
+                        <li role="presentation"><a href="#pwd" data-toggle="tab">修改密码</a></li>
+                        <li role="presentation"><a href="#more" data-toggle="tab">more</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-10" style="border-left: 1px solid #cccccc">
+            <div id="myTabContent" class="tab-content clearfix">
+                <div class="tab-pane fade in active clearfix" id="head">
+                    <div class="col-sm-8">
+                        <div class="clearfix">
+                        <div class="avatar_left">
+                            <div id="avatar_label">
+                                <a href="javascript:void(0);" style="position:relative;overflow:hidden;margin: 140px 0px 10px" class="W_btn">+选择图片
+                                <form method="post" enctype="multipart/form-data">
+                                    <input type="file" id="img_sel" style="position:absolute;bottom:0;right:0;filter:alpha(opacity=0);-moz-opacity:0;cursor:pointer;width:1000px;height:1000px;font-size:100px;" accept="image/gif, image/jpeg, image/x-png">
+                                </form>
+                                </a>
+                                <p>只支持JPG、PNG、GIF，大小不超过5M</p>
+                            </div>
+                            <div id="avatar_canvas" style="display: none">
+                            </div>
+                        </div>
+                        <div class="avatar_right">
+                            <p>预览</p>
+                            <div style="margin-bottom:20px">
+                                <p>
+                                    <canvas id="avatar_big" width="100" height="100"></canvas>
+                                </p>
+                                <span>100 x 100</span>
+                            </div>
+                            <div style="margin-bottom:20px">
+                                <p>
+                                    <canvas id="avatar_mid" width="50" height="50"></canvas>
+                                </p>
+                                <span>50 x 50</span>
+                            </div>
+                            <div>
+                                <p>
+                                    <canvas id="avatar_sma" width="30" height="30"></canvas>
+                                </p>
+                                <span>30 x 30</span>
+                            </div>
+                        </div>
+                        <div class="avatar_bar" style="display:none">
+                            <a href="javascript:void(0);" style="position:relative;overflow:hidden;margin: 10px 0px 0px" class="W_btn">+重新选择
+                                <form method="post" enctype="multipart/form-data">
+                                    <input type="file" id="img_sel2" style="position:absolute;bottom:0;right:0;filter:alpha(opacity=0);-moz-opacity:0;cursor:pointer;width:1000px;height:1000px;font-size:100px;" accept="image/gif, image/jpeg, image/x-png">
+                                </form>
+                            </a>
+<!--
+                            <a id="rotate" class="W_btn" href="javascript:void(0);" style="position:relative;overflow:hidden;margin: 10px 0px 0px;float: right">旋转90度</a>
+-->
+                        </div>
+                        </div>
+                        <div class="avatar_buttons clearfix">
+                            <div class="control-group">
+                                <label class="control-label"></label>
+                                <!-- Button -->
+                                <div class="controls">
+                                    <button id="saveAvatar" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pwd">
+                    <form id="changePwd" action="/mySet/resetPwd" class="form-horizontal" method="post">
+                        <fieldset>
+                            <div class="form-group" style="margin-top: 10px">
+                                <label class="col-sm-2 control-label">原密码</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="password" id="oldpwd" name="oldpwd" value="" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新密码</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="password" id="newpwd" name="newpwd" value="" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">确认密码</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="password" id="newpwd_repect" name="newpwd_repect" value="" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Button -->
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="more">
+                    3
+                </div>
+            </div>
+                </div>
+            </div>
+    </div>
+</div>
+<input type="hidden" id="hid_userAvatar" name="hid_userAvatar" value="<%=user.avatar%>" />
+<!-- validate验证 -->
+<script src="/javascripts/jquery.validate.min.js"></script>
+<script src="/javascripts/jcrop/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/javascripts/set.js"></script>

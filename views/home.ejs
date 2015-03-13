@@ -1,0 +1,166 @@
+<script src="/javascripts/pagination.js"></script>
+<link href="/stylesheets/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<div class="row-fluid clearfix">
+    <div class="col-sm-2">
+        <div class="thumbnail">
+            <img style="border-radius:4px" src="<%=user.avatar.replace('{type}','big')%>" alt="<%=user.name%>">
+            <div class="caption">
+                <h3 style="text-align: center"><%=user.name%></h3>
+                <p>简单地描述一下自己吧</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab"><i class="icon-indent-left"></i> 概况</a></li>
+            <li id="showDetail"><a href="#detail" data-toggle="tab"><i class="icon-list"></i> 支出详细</a></li>
+            <li><a href="#message" data-toggle="tab"><i class="icon-envelope"></i> 我的消息 <span class="badge">42</span></a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <input type="hidden" id="hid_yearData" name="hid_yearData" value=""/>
+                <div class="msg">
+                    <p class="bg-info">
+                        您已累计支出<%=count%>次，支出<%=total%>元，本月支出<%=mcount%>次，支出<%=mtotal%>元。
+                    </p>
+                </div>
+                <div id="home_yearDataShow" style="width: 100%;height: 300px">
+                </div>
+                <div class="row-fluid">
+                    <div class="col-sm-6" id="home_totalCompentsShow" style="height: 300px"></div>
+                    <div class="col-sm-6" id="home_thisMonthCompentsShow" style="height: 300px"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="detail">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>类别</th>
+                        <th>金额(￥)</th>
+                        <th width="300px">备注</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <!-- 分页 -->
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+            </div>
+            <div class="tab-pane fade" id="message">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="avatar/mid/default.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        ...
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="avatar/mid/default.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Middle aligned media</h4>
+                        ...
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="avatar/mid/default.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        ...
+
+                        <!-- Nested media object -->
+                        <div class="media">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editFeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form id="feeEdit" class="form-horizontal" method="post">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-2 control-label">日期</label>
+                        <div class="col-sm-10">
+                            <div class='input-group date' style="width:30%" id='form_date' data-date="" data-date-format="yyyy-mm-dd">
+                                <input id="date" name="date" type='text' class="form-control" data-format="yyyy-mm-dd" readonly/>
+	                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+	                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">类别</label>
+                        <div class="col-sm-10">
+                            <select id="type" name="type" class="form-control" title="请选择类别" style="width: 100px" required>
+                                <!--                                <%//types.forEach(function(type){%>
+                                <option value="<%//=type.value%>"><%//=type.show%></option>
+                                <%//})%>-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <!-- Prepended text-->
+                        <label class="col-sm-2 control-label">金额</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="amount_addon">￥</span>
+                                <input id="amount" name="amount" class="form-control" placeholder="金额" type="text" style="width: 220px" aria-describedby="amount_addon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Textarea -->
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-10">
+                            <div class="textarea">
+                                <textarea id="remark" class="form-control" name="remark" type="" style="resize:none;width:90%" row="3"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- datepicker选择日期 -->
+<script src="/javascripts/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script src="/javascripts/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<!-- chart图表 -->
+<script src="/javascripts/echarts.js"></script>
+<script type="text/javascript">
+    // 路径配置 for echarts
+    require.config({
+        paths: {
+            echarts: '/javascripts'
+        }
+    });
+</script>
+<script src="/javascripts/home/home.js"></script>

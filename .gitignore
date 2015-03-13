@@ -1,3 +1,14 @@
+#过滤文件夹
+/.idea/
+/node_modules/
+
+#过滤文件
+/logs/
+/public/avatar/big/*
+/public/avatar/mid/*
+/public/avatar/small/*
+
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
