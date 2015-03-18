@@ -1,5 +1,6 @@
 /**
- * 支出模块 fee
+ * fee
+ * 支出模块
  * Created by lenovo on 2015/2/25.
  */
 var mongodb = require('./db');

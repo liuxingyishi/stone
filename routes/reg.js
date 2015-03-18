@@ -3,6 +3,7 @@
  */
 var crypto =require('crypto');
 var User = require('../models/user');
+var config = require('../settings').config;
 
 var index = function(req,res){
     res.render('reg', { title: '用户注册',user:req.session.user,layout:'./layout/layout.ejs' });
@@ -10,7 +11,7 @@ var index = function(req,res){
 
 var validUser = function(req,res){
     var name = req.body.name;
-    User.get(name, function(err, user) {
+    User.get({name:name}, function(err, user) {
         if (user){
             res.json({result:1});
         }else{
@@ -26,7 +27,7 @@ var doReg = function(req,res){
         avatar:'default'
     });
     //检查用户名是否已经存在
-    User.get(newUser.name, function(err, user) {
+    User.get({name:newUser.name}, function(err, user) {
         if (user){
             req.flash('error', '用户名已存在');
             return res.redirect('/reg');
@@ -48,7 +49,7 @@ var doReg = function(req,res){
                     return res.redirect('/reg');
                 }
                 delete newUser.password;
-                newUser.avatar = config.avatarDir + '/{type}/' + user.avatar + '.png';
+                newUser.avatar = config.avatarDir + '/{type}/' + newUser.avatar + '.png';
                 req.session.user = newUser;
                 req.flash('success', '注册成功');
                 res.redirect('/home');

@@ -1,4 +1,6 @@
 /**
+ * util
+ * 工具
  * Created by lenovo on 2015/2/26.
  */
 /**
@@ -13,4 +15,19 @@ exports.getNowTime = function(){
     var _min = now.getMinutes() >= 10?now.getMinutes():'0'+now.getMinutes();
     var _sec = now.getSeconds() >= 10?now.getSeconds():'0'+now.getSeconds();
     return now.getFullYear() + "-"+ _m + "-" + _d + " " + _h + ":" + _min + ":" + _sec;
-}
+};
+
+/**
+ * 随机字符串
+ * @param len
+ * @returns {string}
+ */
+exports.randomChar = function(len){
+    var lists = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+        ret = [],
+        total = lists.length;
+    for (var i = 0; i < len; i++) {
+        ret.push(lists[Math.floor(Math.random() * total)]);
+    }
+    return ret.join('');
+};

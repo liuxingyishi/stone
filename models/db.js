@@ -1,4 +1,7 @@
 /**
+ * db
+ * 数据库模块
+ * related to @mongodb
  * Created by lenovo on 2015/2/12.
  */
 var settings = require('../settings');

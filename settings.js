@@ -6,7 +6,10 @@ exports.settings = {
     db: 'stone',
     host: 'localhost',
     dbUser:'stone',
-    dbPwd:'123456'
+    dbPwd:'123456',
+    emailService:'163',
+    emailUser:'liuxingyishi@yeah.net',//liuxingyishi@yeah.net
+    emailPwd:'1234qwer'
 };
 exports.config = {
     feeType:[{show:'-请选择-',value:''},
@@ -18,7 +21,7 @@ exports.config = {
         {show:'话费',value:'6'},
         {show:'租房',value:'7'},
         {show:'水电',value:'8'},
-        {show:'其他',value:'99'}],
-    pageSize:10,
-    avatarDir:'avatar'
+        {show:'其他',value:'99'}],        //支出-类别
+    pageSize:10,        //分页数
+    avatarDir:'avatar'     //头像文件夹
 }

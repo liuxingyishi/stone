@@ -17,7 +17,7 @@ var index = function(req,res,next){
 
 var doResetPwd = function(req,res,next){
     var password = crypto.createHash('md5').update(req.body.oldpwd).digest('base64');
-    User.get(req.session.user.name,function(err,user){
+    User.get({name:req.session.user.name},function(err,user){
         if(!user){
             req.flash('error','用户不存在');
             return res.redirect('/login');
@@ -27,10 +27,10 @@ var doResetPwd = function(req,res,next){
             return res.redirect('/');
         }
         var nPassword = crypto.createHash('md5').update(req.body.newpwd).digest('base64');
-        var newUser = new User({
+        var newUser = {
             name: req.session.user.name,
             password: nPassword
-        });
+        };
         User.update(newUser,function(err,data){
             if(err){
                 req.flash('error','系统错误');

@@ -1,13 +1,54 @@
-<div class="row">
-    <h3>忘记密码</h3>
+<div class="container-fluid">
+    <h3>忘记密码 <small> 确认邮箱</small></h3>
     <hr/>
     <form id="forgotPwd" class="form-horizontal" method="post">
         <fieldset>
             <div class="form-group" style="margin-top: 10px">
                 <label class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="password" id="oldpwd" name="oldpwd" value="" required/>
+                    <input class="form-control" type="email" id="email" name="email" value="" required/>
                     <p class="help-block">注册时账号绑定的邮箱</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Button -->
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form id="forgotCode" style="display: none;" action="/forgot/captcha" class="form-horizontal" method="post">
+        <fieldset>
+            <input type="hidden" id="account" name="account" value=""/>
+            <div class="form-group" style="margin-top: 10px">
+                <label class="col-sm-2 control-label">邮箱验证码</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="captcha" name="captcha" value="" required/>
+                    <p class="help-block">邮箱收到的验证码</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Button -->
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form id="resetPwd" style="display: none;" action="/forgot/resetPwd" class="form-horizontal" method="post">
+        <fieldset>
+            <input type="hidden" id="resetAccount" name="resetAccount" value=""/>
+            <div class="form-group" style="margin-top: 10px">
+                <label class="col-sm-2 control-label">重置密码</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" id="pwd" name="pwd" value="" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" id="repect_pwd" name="repect_pwd" value="" required/>
                 </div>
             </div>
             <div class="form-group">
@@ -19,3 +60,7 @@
         </fieldset>
     </form>
 </div>
+<!-- validate验证 -->
+<script src="/javascripts/jquery.validate.min.js"></script>
+
+<script type="text/javascript" src="/javascripts/forgot.js"></script>

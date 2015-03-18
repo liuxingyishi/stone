@@ -1,4 +1,6 @@
 /**
+ * user
+ * 用户模块
  * Created by lenovo on 2015/2/12.
  */
 var mongodb = require('./db');
@@ -31,13 +33,12 @@ User.prototype.save = function save(callback) {
         });
     });
 };
-User.get = function  get(username, callback) {
+User.get = function  get(param, callback) {
     mongodb.collection('users', function(err, collection) {
         if (err) {
             return callback(err);
         }
-        // 查找 name 属性为 username 的文档
-        collection.findOne({name: username}, function(err, doc) {
+        collection.findOne(param, function(err, doc) {
             if (doc) {
                 // 封装文档为 User 对象
                 var user = new User(doc);

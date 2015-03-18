@@ -17,7 +17,7 @@ var doLogin = function(req,res,next){
         name: req.body.username,
         password: password
     });
-    User.get(newUser.name,function(err,user){
+    User.get({name:newUser.name},function(err,user){
         if(!user){
             req.flash('error','用户不存在');
             return res.redirect('/login');

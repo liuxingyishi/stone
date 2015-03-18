@@ -1,5 +1,7 @@
 /**
- * 日志模块 winston
+ * log
+ * 日志模块
+ * related to @winston
  * Created by lenovo on 2015/3/5.
  */
 var winston = require('winston');

@@ -46,6 +46,9 @@ module.exports = function(app){
 
     /*忘记密码*/
     app.get('/forgot',forgot.index);
+    app.post('/forgot/sendMail',forgot.sendMail);
+    app.post('/forgot/captcha',forgot.captcha);
+    app.post('/forgot/resetPwd',forgot.resetPwd);
 
     /*用户主页*/
     app.get('/home',home.index);

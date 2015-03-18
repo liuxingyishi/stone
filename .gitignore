@@ -3,7 +3,7 @@
 /node_modules/
 
 #过滤文件
-/logs/
+/logs/*
 /public/avatar/big/*
 /public/avatar/mid/*
 /public/avatar/small/*

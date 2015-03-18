@@ -62,8 +62,11 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
+            title:'服务器开小差啦',
+            user:req.session.user,
             message: err.message,
-            error: err
+            error: err,
+            layout:'./layout/layout.ejs'
         });
     });
 }
@@ -73,8 +76,11 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
+        title:'服务器开小差啦',
+        user:req.session.user,
         message: err.message,
-        error: {}
+        error: {},
+        layout:'./layout/layout.ejs'
     });
 });
 
